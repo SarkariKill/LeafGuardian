@@ -419,7 +419,7 @@ elif page == "Scanner":
         # Perform prediction on test_image_upload
            index_prediction = model_prediction(test_image_upload)
            disease_name = diseases(index_prediction)
-           st.markdown(f"**Disease:** '{disease_name}'")
+           st.markdown(f"**Disease:** {disease_name}")
            st.markdown("**Cure Recommendations:**")
            for point in cure(index_prediction):
              st.write(point)
