@@ -375,7 +375,7 @@ elif page == "Scanner":
             }
         </style>
     """, unsafe_allow_html=True)
-    st.markdown("<h1 class='title'>Leaf Scanner</h1>", unsafe_allow_html=True)
+    
 
     
     lottie_scanner = load_lottiefile("lotiie/First Project/leaf_scan.json")
