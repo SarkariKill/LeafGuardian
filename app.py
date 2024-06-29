@@ -836,7 +836,7 @@ Feel free to reach out to me on social media or via email. I'd love to hear your
         <a href="https://www.instagram.com/adi_jong_un/" target="_blank" class="icon">
             <img src="https://img.icons8.com/color/48/000000/instagram-new.png"/>
         </a>
-        <a href="https://www.github.com/jlnetosci/st-social-media-links" target="_blank" class="icon">
+        <a href="https://github.com/SarkariKill" target="_blank" class="icon">
             <img src="https://img.icons8.com/material-rounded/48/000000/github.png"/>
         </a>
     </div>
