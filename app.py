@@ -296,7 +296,7 @@ def cure(result: int):
  
 #Navigation Bar
 from streamlit_navigation_bar import st_navbar
-page = st_navbar(["Home","Plant Disease Guide", "Leaf Scanner", "About"])
+page = st_navbar(["Home","Scanner","PhytoGuard", "About"])
 # Custom CSS to move the navigation bar to the rightmost corner
 st.markdown(
     """
@@ -367,7 +367,7 @@ Thank you for choosing LeafGuardian. Together, we can keep your plants healthy a
                 """)
         
 # Leaf Scanner Page
-elif page == "Leaf Scanner":
+elif page == "Scanner":
     st.markdown("""
         <style>
             .title {
@@ -415,7 +415,6 @@ elif page == "Leaf Scanner":
          st.markdown("**Cure Recommendations:**")
          for point in cure(index_prediction):
           st.write(point)
-          st.write("---")  # Separator for clarity
     elif test_image_upload:
         # Perform prediction on test_image_upload
         index_prediction = model_prediction(test_image_upload)
@@ -423,8 +422,7 @@ elif page == "Leaf Scanner":
         st.markdown(f"**Disease:** '{disease_name}'")
         st.markdown("**Cure Recommendations:**")
         for point in cure(index_prediction):
-            st.write(point)
-        st.write("---")  # Separator for clarity
+          st.write(point)
     else:
         st.write("Please capture an image or upload a file first.")
         
@@ -439,7 +437,7 @@ Thank you for choosing LeafGuardian. Together, we can keep your plants healthy a
                 """)
     
 # Leaf Guide
-elif page == "Plant Disease Guide":
+elif page == "PhytoGuard":
     lottie_scanner = load_lottiefile("lotiie/First Project/moving_peatle.json")
     st_lottie(
         lottie_scanner,
