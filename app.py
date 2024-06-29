@@ -409,20 +409,20 @@ elif page == "Scanner":
     if st.button("Predict"):
         if test_image_camera:
         # Perform prediction on test_image_camera
-         index_prediction = model_prediction(test_image_camera)
-         disease_name = diseases(index_prediction)
-         st.markdown(f"**Disease:** '{disease_name}'")
-         st.markdown("**Cure Recommendations:**")
-         for point in cure(index_prediction):
-          st.write(point)
-    elif test_image_upload:
+            index_prediction = model_prediction(test_image_camera)
+            disease_name = diseases(index_prediction)
+            st.markdown(f"**Disease:** '{disease_name}'")
+            st.markdown("**Cure Recommendations:**")
+            for point in cure(index_prediction):
+              st.write(point)
+        elif test_image_upload:
         # Perform prediction on test_image_upload
-        index_prediction = model_prediction(test_image_upload)
-        disease_name = diseases(index_prediction)
-        st.markdown(f"**Disease:** '{disease_name}'")
-        st.markdown("**Cure Recommendations:**")
-        for point in cure(index_prediction):
-          st.write(point)
+           index_prediction = model_prediction(test_image_upload)
+           disease_name = diseases(index_prediction)
+           st.markdown(f"**Disease:** '{disease_name}'")
+           st.markdown("**Cure Recommendations:**")
+           for point in cure(index_prediction):
+             st.write(point)
     else:
         st.write("Please capture an image or upload a file first.")
         
