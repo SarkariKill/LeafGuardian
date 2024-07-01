@@ -6,19 +6,7 @@ import pandas as pd
 import tensorflow as tf
 import keras.preprocessing.image as ImageDataGenerator
 from PIL import Image
-import google.generativeai as genai
 
-from IPython.display import display
-from IPython.display import Markdown
-
-import os
-os.environ['GOOGLE_API_KEY'] = "AIzaSyCihuiYQK_yBKxHtduqrMIM8_BtaBOxYKo"
-
-genai.configure(api_key=os.environ['GOOGLE_API_KEY'])
-
-## Yeh Rha Hamara Gpt Model
-model = genai.GenerativeModel('gemini-pro')
-print(model)
 
 import streamlit as st 
 from streamlit_lottie import st_lottie 
@@ -82,6 +70,229 @@ def diseases(result: int):
     'Tomato Healthy'
 ]
     return class_names[result]
+# Return Cure
+def cure(result: int):
+    plant_disease_cures = [
+    [
+        "1. Use fungicides such as captan or myclobutanil.",
+        "2. Remove and destroy infected leaves and fruit.",
+        "3. Prune trees to improve air circulation.",
+        "4. Avoid overhead irrigation to reduce leaf wetness.",
+        "5. Apply dormant oil to control overwintering fungal spores."
+    ],
+    [
+        "1. Prune trees for better air circulation.",
+        "2. Remove and destroy infected fruit and leaves.",
+        "3. Apply fungicides like myclobutanil or pyraclostrobin.",
+        "4. Use copper sprays during the growing season.",
+        "5. Maintain good orchard hygiene to reduce overwintering spores."
+    ],
+    [
+        "1. Remove cedar trees near apple orchards if possible.",
+        "2. Apply fungicides like triadimefon or myclobutanil.",
+        "3. Prune apple trees to improve air circulation.",
+        "4. Apply sulfur sprays during the growing season.",
+        "5. Remove and destroy any infected leaves or fruit."
+    ],
+    [
+        "No specific treatment needed; maintain good orchard practices."
+    ],
+    [
+        "No specific treatment needed; maintain good cultural practices."
+    ],
+    [
+        "1. Apply fungicides like sulfur or potassium bicarbonate.",
+        "2. Prune trees to improve air circulation.",
+        "3. Remove and destroy infected leaves and shoots.",
+        "4. Apply neem oil to suppress fungal growth.",
+        "5. Avoid overhead irrigation to reduce leaf wetness."
+    ],
+    [
+        "No specific treatment needed; maintain good orchard practices."
+    ],
+    [
+        "1. Use fungicides like chlorothalonil or mancozeb.",
+        "2. Rotate crops to reduce disease carryover.",
+        "3. Plant resistant varieties if available.",
+        "4. Remove and destroy infected leaves and debris.",
+        "5. Apply copper-based sprays during humid conditions."
+    ],
+    [
+        "1. Plant resistant corn varieties if available.",
+        "2. Apply fungicides like triazole or strobilurin.",
+        "3. Rotate crops and practice good field hygiene.",
+        "4. Remove and destroy infected crop residues.",
+        "5. Ensure proper plant spacing for better air circulation."
+    ],
+    [
+        "1. Apply fungicides like azoxystrobin or pyraclostrobin.",
+        "2. Rotate crops to break disease cycles.",
+        "3. Use resistant corn hybrids if available.",
+        "4. Remove and destroy infected leaves and debris.",
+        "5. Avoid excessive nitrogen fertilization."
+    ],
+    [
+        "No specific treatment needed; maintain good agricultural practices."
+    ],
+    [
+        "1. Apply fungicides like captan or myclobutanil.",
+        "2. Remove and destroy infected fruit clusters.",
+        "3. Prune vines to improve air circulation.",
+        "4. Apply dormant oil to reduce overwintering spores.",
+        "5. Practice good vineyard sanitation."
+    ],
+    [
+        "1. Remove and destroy infected grapevine wood.",
+        "2. Apply systemic fungicides like fosetyl-aluminum.",
+        "3. Prune vines to remove diseased parts.",
+        "4. Practice delayed pruning to reduce infection risk.",
+        "5. Use resistant grape varieties if available."
+    ],
+    [
+        "1. Apply fungicides like azoxystrobin or myclobutanil.",
+        "2. Prune vines for better sunlight and air circulation.",
+        "3. Remove and destroy infected leaves and canes.",
+        "4. Apply sulfur sprays during the growing season.",
+        "5. Avoid overhead irrigation to reduce leaf wetness."
+    ],
+    [
+        "No specific treatment needed; maintain good vineyard management."
+    ],
+    [
+        "1. Use insecticides to control citrus psyllids.",
+        "2. Remove and destroy infected trees.",
+        "3. Apply antibiotics like streptomycin if available.",
+        "4. Practice integrated pest management (IPM) techniques.",
+        "5. Plant disease-free nursery stock."
+    ],
+    [
+        "1. Apply copper-based fungicides during the growing season.",
+        "2. Prune trees to improve air circulation.",
+        "3. Remove and destroy infected twigs and branches.",
+        "4. Apply fixed copper sprays during dormant season.",
+        "5. Avoid overhead irrigation to reduce disease spread."
+    ],
+    [
+        "No specific treatment needed; maintain good orchard practices."
+    ],
+    [
+        "1. Apply copper-based fungicides during the growing season.",
+        "2. Rotate crops to reduce disease pressure.",
+        "3. Use disease-resistant pepper varieties if available.",
+        "4. Remove and destroy infected plant debris.",
+        "5. Apply drip irrigation to avoid wetting foliage."
+    ],
+    [
+        "No specific treatment needed; maintain good agricultural practices."
+    ],
+    [
+        "1. Apply fungicides like chlorothalonil or mancozeb.",
+        "2. Rotate crops to reduce disease build-up in soil.",
+        "3. Remove and destroy infected foliage and tubers.",
+        "4. Mulch around plants to prevent soil splashing.",
+        "5. Use disease-resistant potato varieties if available."
+    ],
+    [
+        "1. Apply fungicides like copper-based sprays or mancozeb.",
+        "2. Practice crop rotation to break disease cycles.",
+        "3. Remove and destroy infected plant parts promptly.",
+        "4. Keep foliage dry by avoiding overhead irrigation.",
+        "5. Apply protective fungicides preventively during humid weather."
+    ],
+    [
+        "No specific treatment needed; maintain good agricultural practices."
+    ],
+    [
+        "No specific treatment needed; maintain good orchard practices."
+    ],
+    [
+        "No specific treatment needed; maintain good agricultural practices."
+    ],
+    [
+        "1. Apply fungicides like sulfur or potassium bicarbonate.",
+        "2. Remove and destroy infected leaves and vines.",
+        "3. Prune plants to improve air circulation.",
+        "4. Apply neem oil or horticultural oil to suppress fungal growth.",
+        "5. Avoid overhead irrigation to reduce leaf wetness."
+    ],
+    [
+        "1. Apply copper-based fungicides during the growing season.",
+        "2. Remove and destroy infected leaves and runners.",
+        "3. Prune plants to increase air circulation.",
+        "4. Apply drip irrigation to keep foliage dry.",
+        "5. Use disease-resistant strawberry varieties if available."
+    ],
+    [
+        "No specific treatment needed; maintain good agricultural practices."
+    ],
+    [
+        "1. Apply copper-based fungicides during the growing season.",
+        "2. Rotate crops and practice good field hygiene.",
+        "3. Remove and destroy infected plant debris.",
+        "4. Apply drip irrigation to avoid wetting foliage.",
+        "5. Use disease-resistant tomato varieties if available."
+    ],
+    [
+        "1. Apply fungicides like chlorothalonil or mancozeb.",
+        "2. Remove and destroy infected lower leaves and debris.",
+        "3. Mulch around plants to prevent soil splashing.",
+        "4. Practice crop rotation to reduce disease build-up.",
+        "5. Keep foliage dry by watering at the base of plants."
+    ],
+    [
+        "1. Apply fungicides like copper-based sprays or mancozeb.",
+        "2. Remove and destroy infected leaves and plant debris.",
+        "3. Practice crop rotation and avoid planting near infected areas.",
+        "4. Ensure good air circulation around plants.",
+        "5. Apply preventive sprays during periods of high humidity."
+    ],
+    [
+        "1. Apply fungicides like chlorothalonil or copper-based sprays.",
+        "2. Prune lower leaves to improve air circulation.",
+        "3. Water plants at the base to keep foliage dry.",
+        "4. Use mulch to prevent soil splashing onto leaves.",
+        "5. Apply preventive sprays during cool, damp weather."
+    ],
+    [
+        "1. Apply fungicides like chlorothalonil or mancozeb.",
+        "2. Remove and destroy infected leaves and debris.",
+        "3. Rotate crops and avoid overhead irrigation.",
+        "4. Apply mulch to prevent soil splashing onto lower leaves.",
+        "5. Use disease-resistant tomato varieties if available."
+    ],
+    [
+        "1. Use miticides to control spider mite infestations.",
+        "2. Increase humidity levels to discourage mite activity.",
+        "3. Remove and destroy heavily infested plant parts.",
+        "4. Apply insecticidal soap or neem oil to suppress mites.",
+        "5. Use reflective mulches to deter mite movement."
+    ],
+    [
+        "1. Apply fungicides like chlorothalonil or mancozeb.",
+        "2. Remove and destroy infected plant debris.",
+        "3. Practice crop rotation to reduce disease build-up.",
+        "4. Maintain good air circulation around plants.",
+        "5. Water plants at the base to avoid wetting foliage."
+    ],
+    [
+        "1. Use insecticides to control whiteflies, the virus vector.",
+        "2. Remove and destroy infected plants promptly.",
+        "3. Use reflective mulches to deter whiteflies.",
+        "4. Apply neem oil or insecticidal soap to suppress whiteflies.",
+        "5. Plant resistant tomato varieties if available."
+    ],
+    [
+        "1. Remove and destroy infected plants immediately.",
+        "2. Control aphid populations, which can spread the virus.",
+        "3. Use virus-free seed and disease-free transplants.",
+        "4. Practice good field hygiene to reduce virus reservoirs.",
+        "5. Avoid planting tomatoes near infected solanaceous plants."
+    ],
+    [
+        "No specific treatment needed; maintain good agricultural practices."
+    ]
+]
+    return plant_disease_cures[result]
  
 #Navigation Bar
 from streamlit_navigation_bar import st_navbar
@@ -164,14 +375,13 @@ elif page == "Scanner":
             }
         </style>
     """, unsafe_allow_html=True)
-    st.markdown("<h1 class='title'>Leaf Scanner</h1>", unsafe_allow_html=True)
+    
 
     
     lottie_scanner = load_lottiefile("lotiie/First Project/leaf_scan.json")
     st_lottie(
         lottie_scanner,
         key = "None",
-
     )
     st.write("## Instructions:")
     st.write("1. Upload an image of your plant's leaf using the button below.")
@@ -201,33 +411,18 @@ elif page == "Scanner":
         # Perform prediction on test_image_camera
             index_prediction = model_prediction(test_image_camera)
             disease_name = diseases(index_prediction)
-            response = model.generate_content("""Based on the plant disease, suggest about 5-10 cure 
-                                              recommendations and provide detailed information about the disease. 
-                                              Please format the response properly in markdown format I want to display
-                                              on my website with the following structure:
-                                              1. Disease Name: Display the name of the disease.
-                                              2. About the Disease: Provide detailed information about the disease, using proper 
-                                              headings and subheadings.
-                                              3. Cure Recommendations: List 5-10 cure recommendations in bullet points.
-                                              The disease is: """+disease_name)
-            text = response._result.candidates[0].content.parts[0].text
-            st.markdown(text)
+            st.markdown(f"**Disease:** '{disease_name}'")
+            st.markdown("**Cure Recommendations:**")
+            for point in cure(index_prediction):
+              st.write(point)
         elif test_image_upload:
         # Perform prediction on test_image_upload
            index_prediction = model_prediction(test_image_upload)
            disease_name = diseases(index_prediction)
-           response = model.generate_content("""Based on the plant disease, suggest about 5-10 cure 
-                                              recommendations and provide detailed information about the disease. 
-                                              Please format the response properly in markdown format I want to display
-                                              on my website with the following structure:
-                                              1. Disease Name: Display the name of the disease.
-                                              2. About the Disease: Provide detailed information about the disease, using proper 
-                                              headings and subheadings.
-                                              3. Cure Recommendations: List 5-10 cure recommendations in bullet points.
-                                              The disease is: """+disease_name)
-           text = response._result.candidates[0].content.parts[0].text
-           st.markdown(text)
-           
+           st.markdown(f"**Disease:** {disease_name}")
+           st.markdown("**Cure Recommendations:**")
+           for point in cure(index_prediction):
+             st.write(point)
     else:
         st.write("Please capture an image or upload a file first.")
         
@@ -641,7 +836,7 @@ Feel free to reach out to me on social media or via email. I'd love to hear your
         <a href="https://www.instagram.com/adi_jong_un/" target="_blank" class="icon">
             <img src="https://img.icons8.com/color/48/000000/instagram-new.png"/>
         </a>
-        <a href="https://www.github.com/jlnetosci/st-social-media-links" target="_blank" class="icon">
+        <a href="https://github.com/SarkariKill" target="_blank" class="icon">
             <img src="https://img.icons8.com/material-rounded/48/000000/github.png"/>
         </a>
     </div>
@@ -658,7 +853,3 @@ Thank you for choosing LeafGuardian. Together, we can keep your plants healthy a
     
 
     
-
-
-
-
